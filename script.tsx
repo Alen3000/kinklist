@@ -656,4 +656,21 @@ document.addEventListener('DOMContentLoaded', () => {
             setupDOM();
         })
     }
+    
+    const themeStylesheet = document.getElementById('theme');
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      themeStylesheet.href = storedTheme;
+    }
+    const themeToggle = document.getElementById('toggleDark');
+    themeToggle.addEventListener('click', () => {
+      if (themeStylesheet.href.includes('light')) {
+        themeStylesheet.href = 'dark-theme.css'
+        themeToggle.innerText = 'Switch to light mode'
+      } else {
+        themeStylesheet.href = 'light-theme.css'
+        themeToggle.innerText = 'Switch to dark mode'
+      }
+      localStorage.setItem('theme', themeStylesheet.href);
+    })
 });
