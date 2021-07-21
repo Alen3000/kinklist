@@ -1,0 +1,172 @@
+:root {
+  --header-fg: #FEF7DF;
+  --header-bg: #4E4E4E;
+  --table-border: #B38B6D;
+  --transition-time: 0.1s;
+}
+
+body {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 0 10px;
+  background: #3F3F3F;
+}
+
+h2 {
+  padding: 0;
+  margin: 10px 0 5px;
+  font-size: 18px;
+  color: var(--table-border);
+}
+
+#InputList {
+  column-width: 380px;
+
+  .kink-category {
+    break-inside: avoid-column;
+    overflow: auto;
+
+    table {
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      width: 100%;
+
+      th, td {
+        padding: 4px;
+      }
+
+      thead {
+        border: solid var(--table-border) 1px;
+        margin: 0;
+        background: var(--header-bg);
+        color: var(--table-border);
+
+        .choicesCol {
+          box-sizing: border-box;
+          width: 106px; // TODO: Do not hardcode
+        }
+      }
+
+      td {
+        border: solid var(--table-border) 1px;
+        color: var(--table-border);
+      }
+    }
+  }
+}
+
+// Choices
+.choice {
+  box-sizing: border-box;
+  width: 15px;
+  height: 15px;
+  opacity: 0.35;
+  border: solid black 1px;
+  border-radius: 50%;
+  outline-style: none !important;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.kink-choices, .selected {
+  .choice {
+    transition: all var(--transition-time) ease-in-out;
+
+    & + .choice {
+      margin-left: 5px;
+    }
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &.selected {
+      opacity: 1;
+      border-width: 2px;
+    }
+  }
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    margin: 0.67em 0;
+    display: inline-block;
+  }
+
+  h1 {
+    margin-right: 15px;
+    color: var(--table-border);
+  }
+
+  #legend {
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      margin-right: 15px;
+      color: var(--table-border);
+
+      .choice {
+        opacity: 1;
+      }
+    }
+  }
+
+  .buttons button {
+    //vertical-align: text-top;
+    //margin-top: 2px;
+    //box-sizing: border-box;
+    background: #A27250;
+    color: #FEF7DF;
+    text-transform: uppercase;
+    padding: 8px 15px 5px;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all var(--transition-time) ease-in-out;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+// Name input
+h1 input {
+  font: inherit;
+  width: 77.6875px; // Re-calculated, but this works out to be the starting width
+  color: var(--table-border);
+  background: #3F3F3F;
+
+  &::placeholder {
+    background: #3F3F3F;
+    color: rgba(179, 139, 109, 0.8);
+  }
+}
+
+// Footer
+footer {
+  margin: 2em auto;
+  text-align: center;
+  opacity: 1;
+  color: var(--table-border);
+}
+
+// Overlay
+.overlay {
+  display: none !important;
+}
+
+@media (max-height: 500px) {
+  #InputPrevious, #InputNext {
+    display: none;
+  }
+}
