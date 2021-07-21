@@ -1,8 +1,38 @@
 :root {
+  --transition-time: 0.1s;
+}
+
+:root[data-theme="light"] {
+  --default-fg: #333;
+  --default-bg: white;
   --header-fg: white;
   --header-bg: #666;
   --table-border: #999;
-  --transition-time: 0.1s;
+  --choice-opacity: 0.35;
+  --name-border: #aaa;
+  --name-placeholder-fg: #aaa;
+  --link-fg: lightblue;
+  --button-bg: #4980ae;
+  --button-fg: white;
+}
+
+:root[data-theme="dark"] {
+  --default-fg: #ccc;
+  --default-bg: #1a1a1a;
+  --header-fg: #bbb;
+  --header-bg: #111;
+  --table-border: #333;
+  --choice-opacity: 0.2;
+  --name-border: #666;
+  --name-placeholder-fg: #666;
+  --link-fg: lightblue;
+  --button-bg: #2e506d;
+  --button-fg: #ccc;
+}
+
+html {
+  background: var(--default-bg);
+  color: var(--default-fg);
 }
 
 body {
@@ -11,6 +41,10 @@ body {
   max-width: 2000px;
   margin: 0 auto;
   padding: 0 10px;
+}
+
+a {
+  color: var(--link-fg);
 }
 
 h2 {
@@ -59,7 +93,7 @@ h2 {
   box-sizing: border-box;
   width: 15px;
   height: 15px;
-  opacity: 0.35;
+  opacity: var(--choice-opacity);
   border: solid black 1px;
   border-radius: 50%;
   outline-style: none !important;
@@ -119,8 +153,8 @@ header {
     //vertical-align: text-top;
     //margin-top: 2px;
     //box-sizing: border-box;
-    background: #4980ae;
-    color: white;
+    background: var(--button-bg);
+    color: var(--button-fg);
     text-transform: uppercase;
     padding: 8px 15px 5px;
     border-style: none;
@@ -138,9 +172,12 @@ header {
 h1 input {
   font: inherit;
   width: 77.6875px; // Re-calculated, but this works out to be the starting width
+  color: var(--default-fg);
+  background: var(--default-bg);
+  border: 1px solid var(--name-border);
 
   &::placeholder {
-    color: lighten(grey, 20%);
+    color: var(--name-placeholder-fg);
   }
 }
 

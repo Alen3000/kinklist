@@ -2,6 +2,13 @@ const CATEGORY_PREFIX = 'category-';
 const TYPE_PREFIX = 'type-';
 const CHOICE_PREFIX = 'choice-';
 const SELECTED = 'selected';
+const IMAGE_FOOTER = 'kinklist.xyz';
+
+// Theme based on OS preference
+const html = document.getElementsByTagName('html')[0];
+const matchMediaPrefDark = window.matchMedia('(prefers-color-scheme: dark)');
+html.dataset.theme = matchMediaPrefDark.matches ? 'dark' : 'light';
+matchMediaPrefDark.addEventListener('change', e => html.dataset.theme = e.matches ? 'dark' : 'light');
 
 const strToClass = (str: string): string => {
     return str.toLowerCase().replace(/[^a-z]+/g, '-');
@@ -609,7 +616,7 @@ const exportImage = (): void => {
     // Stamp URL
     context.fillStyle = '#000000';
     context.font = "12px Arial";
-    context.fillText('kinklist.xyz', canvasWidth - 70, canvasHeight - 10);
+    context.fillText(IMAGE_FOOTER, canvasWidth - 70, canvasHeight - 10);
 
     // Save image
     const pom = document.createElement('a');
